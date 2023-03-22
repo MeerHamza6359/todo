@@ -1,10 +1,9 @@
 import { useRef, useState } from 'react';
-import logo from '../style/logo.svg';
+// import logo from '../style/logo.svg';
 import '../style/App.css';
-import { Card, Input, Button } from 'antd';
-
+import { Input, Button } from 'antd';
+import TodoList from './TodoList';
 function App() {
-
 
   //     const myvalue = useRef()
 
@@ -21,29 +20,23 @@ function App() {
   // }
 
   const [Item, setItem] = useState([])
-  const [value, setValue] = useState("")
+  const myinput = useRef()
 
   const getItems = () => {
-    setItem([...Item, value])
-    setValue("")
+    setItem([myinput.current.input.value, ...Item])
+    
   }
 
   return (
     <>
-      <Input value={value} onChange={(e) => { setValue(e.target.value) }}></Input>
+      <Input ref={myinput} />
       <Button onClick={getItems}>Click Me!</Button>
-      {Item.map((value,index)=>{
-        return <Card key={index}>
-           <p>My name is {value}</p>
-      </Card>
-     
-      })
-    }
-    </>
-  )
+      <TodoList myItem={Item}/>
+      </>
+      );
 
 }
 
-export default App;
+      export default App;
 
 

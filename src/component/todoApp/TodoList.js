@@ -1,11 +1,21 @@
-import React, { useState } from "react";
-import { Button, Input, Card } from "antd";
-import App from "./todo";
+import { Card } from "antd";
+import React from "react";
 
 
-function TodoList() {
+
+const TodoList = ({ myItem }) => {
     return (
-        <App/>
+        <>
+            { myItem.length ? myItem.map((value, index) => {
+                return <Card key={index}>
+                    <p>My name is {value}</p>
+                </Card>
+
+            }): <p>No Task</p>
+            }
+
+        </>
     )
 
 }
+export default TodoList
