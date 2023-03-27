@@ -26,12 +26,14 @@ function App() {
     setItem([myinput.current.input.value, ...Item])
     
   }
+  
 
   return (
     <>
       <Input ref={myinput} />
       <Button onClick={getItems}>Click Me!</Button>
-      <TodoList myItem={Item}/>
+      <TodoList myItem={Item} setItem={setItem} />
+     
       </>
       );
 

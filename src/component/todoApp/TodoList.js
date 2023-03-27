@@ -1,18 +1,29 @@
 import { Card } from "antd";
 import React from "react";
+ import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 
+const TodoList = ({ myItem, setItem}) => {
 
+    const deletelist =(index)=>{
+        let filterlists = myItem.filter((val, ind)=>{
+            return ind !== index
+        })
+        setItem(filterlists)
+    }
+   
 
-const TodoList = ({ myItem }) => {
     return (
         <>
-            { myItem.length ? myItem.map((value, index) => {
+            {myItem.length ? myItem.map((value, index) => {
                 return <Card key={index}>
-                    <p>My name is {value}</p>
+                    <p>{value}</p>
+                    <EditOutlined />
+                    <DeleteOutlined onClick={() => deletelist(index)}/>
                 </Card>
 
-            }): <p>No Task</p>
+            }) : <p>No Task</p>
             }
+
 
         </>
     )
