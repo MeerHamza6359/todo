@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react';
-// import logo from '../style/logo.svg';
+import { useState } from 'react';
 import '../style/App.css';
-import { Input, Button } from 'antd';
+import {Input, Button } from 'antd';
 import TodoList from './TodoList';
 function App() {
 
@@ -20,25 +19,34 @@ function App() {
   // }
 
   const [Item, setItem] = useState([])
-  const myinput = useRef()
 
-  const getItems = () => {
-    setItem([myinput.current.input.value, ...Item])
-    
+  const [Inputs, setInput] = useState("")
+  const [Id, setId] = useState(null)
+
+  const updateValue = () => {
+    if (Id === 0 || Id > 0) {
+      Item[Id] = Inputs
+      setItem([...Item])
+      setId(null)
+      setInput("")
+    }
+    else {
+      setItem([...Item, Inputs])
+      setInput("")
+    }
   }
-  
 
   return (
     <>
-      <Input ref={myinput} />
-      <Button onClick={getItems}>Click Me!</Button>
-      <TodoList myItem={Item} setItem={setItem} />
-     
-      </>
-      );
+      <Input value={Inputs} onChange={(e) =>{setInput(e.target.value)}}/>
+      <Button onClick={updateValue}>{Id === 0 || Id > 0? "Update" : "ADD"}</Button>
+      <TodoList myItem={Item} setItem={setItem} setId={setId} setInput={setInput} updateValue={((e)=>setInput(e))}/>
+
+    </>
+  );
 
 }
 
-      export default App;
+export default App;
 
 
