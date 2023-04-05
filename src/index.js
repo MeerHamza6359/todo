@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client';
 import App from './component/todoApp/todo';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import MyRouter from './component/todoApp/route';
+import MyCounter from './component/todoApp/counter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App/>
-
+    <MyRouter/>
   </React.StrictMode>
 );
 

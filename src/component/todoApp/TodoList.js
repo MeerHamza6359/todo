@@ -1,28 +1,23 @@
-import { Card } from "antd";
-import React from "react";
+import { React, memo } from "react";
 import deletelist from "./deletelist";
- import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Card } from "antd";
 
-const TodoList = ({ myItem, setItem, setId, updateValue }) => {
-
+const TodoList = ({Item, setItem, setId}) => {
+    console.log("TodoList.js")
     return (
         <>
-            {myItem.length ? myItem.map((value, index) => {
+            {Item.length ? Item.map((value, index) => {
                 return <Card key={index}>
                     <p>{value}</p>
-                    <EditOutlined onClick={()=>{
+                    <EditOutlined onClick={() => {
                         setId(index);
-                        updateValue(value);
-                    }}/>
-                    <DeleteOutlined onClick={() => deletelist(index, myItem, setItem)}/>
+                    }} />
+                    <DeleteOutlined onClick={() => deletelist(index, Item, setItem)} />
                 </Card>
 
-            }) : <p>No Task</p>
-            }
-
-
+            }) : <p>No Task</p>}
         </>
     )
-
 }
-export default TodoList
+export default memo(TodoList)
